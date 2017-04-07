@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<div align="right">
+<li style="color:red"><a href="{% url 'polls:logout' %}"><span  style="color:grey"> logout </span></a></li>
+</div>
+
+<center> <h1 style="color:red">{{ question.question_text }}</h1>
+
+    <ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+    </ul>
+
+    <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+    <a href="{% url 'polls:index' %}" style="color:red"> Click here to change Question </a>
+</center>

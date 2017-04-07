@@ -1,0 +1,22 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<div align="right">
+<li style="color:red"><a href="{% url 'polls:logout' %}"> logout </a></li>
+</div>
+
+<center>
+{% if latest_question_list %}
+
+    <h1 align="center" style="color:red"><u>Questions</u></h1>
+    <ul>
+    {% for question in latest_question_list %}
+        <li style="color:red"><a href="{% url 'polls:detail' question.id %}"><span  style="color:grey">{{ question.question_text }}</span></a></li>
+    {% endfor %}
+    </ul>
+    </h1>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</center>
